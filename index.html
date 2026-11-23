@@ -38582,6 +38582,8 @@
       /* ============================================================
          Map zones. The 17 zones partition all 1556 words (plan:
          map-plan-2026-11-09, one word in exactly one zone).
+         Plus one ECE special zone (ece, 幼教专班) that reuses words from
+         the 17 zones for ECE Level II practice — it adds no new words.
          Zone play is practice on top of the one memory book: a
          zone level deals this zone's due reviews first (2–3
          types, as on the main line now), then its unseen words
@@ -38609,7 +38611,13 @@
         character: ["freedom","confidence","strength","beauty","courage","kindness","ability","talent","weakness","behaviour","personality","character","attitude","habit","dignity","honesty","independence","patience","creativity","intelligence","ambition","determination","loyalty","resilience","virtue","genius","reliability","integrity","tolerance","wit","mindset","flexibility","precision","clarity","ethic","dedication","willingness"],
         wisdom: ["idea","truth","memory","mind","faith","belief","decision","choice","thought","opinion","reason","problem","solution","understanding","attention","secret","reality","concept","theory","principle","purpose","meaning","world","universe","imagination","concentration","awareness","certainty","curiosity","doubt","evidence","fantasy","wisdom","motivation","logic","accuracy","discovery","thinking","philosophy","assumption","reflection","realization","perspective","distinction","contrast","strategy","technique","value","hypothesis","illusion","reasoning","inspiration","contemplation","conviction","instinct","scenario","interpretation","perception","magic"],
         social: ["peace","friendship","marriage","trust","ceremony","charity","credit","crime","culture","society","community","government","relationship","communication","agreement","competition","support","respect","promise","rule","law","power","advice","justice","duty","conflict","equality","privacy","discussion","apology","blessing","praise","encouragement","tradition","legislation","bias","dispute","solidarity","immigration","subsidy","donation","hospitality","ritual","tribute","alliance","consensus","cooperation","conversation","festival","guest","meeting","party","celebration"],
-        growth: ["time","luck","danger","dream","health","energy","speed","holiday","journey","adventure","success","victory","safety","noise","silence","future","past","accident","anniversary","birthday","balance","battle","crisis","difficulty","moment","opportunity","experience","event","condition","change","growth","progress","failure","life","chance","situation","risk","reward","birth","absence","chaos","effort","efficiency","dilemma","burden","breakthrough","consequence","development","transformation","trend","prospect","legacy","innovation","prosperity","stability","sustainability","momentum","milestone","fate","miracle","refuge","horizon"]
+        growth: ["time","luck","danger","dream","health","energy","speed","holiday","journey","adventure","success","victory","safety","noise","silence","future","past","accident","anniversary","birthday","balance","battle","crisis","difficulty","moment","opportunity","experience","event","condition","change","growth","progress","failure","life","chance","situation","risk","reward","birth","absence","chaos","effort","efficiency","dilemma","burden","breakthrough","consequence","development","transformation","trend","prospect","legacy","innovation","prosperity","stability","sustainability","momentum","milestone","fate","miracle","refuge","horizon"],
+        /* ECE special zone 幼教专班 (ECE Level II): a practice zone that
+           REUSES words from the other zones — it does NOT partition new
+           words and does NOT change the 1556-word total or main-line
+           levels. Grouped: Preschool 学前 / School Age 学龄 /
+           Interaction 互动 / Games 游戏 / Crafts 手工. */
+        ece: ["baby","child","toy","teddy","doll","blocks","puzzle","ball","story","song","music","teacher","student","school","classroom","homework","book","pencil","crayon","notebook","exam","dictionary","picture","letter","card","friend","praise","kindness","patience","gift","game","sport","scissors","glue","paint","paintbrush","paper","clay","tape","stapler","eraser"]
       };
       /* Zone sticker positions on the long map (2026-11): x/y are
          % of the map stage. Each sticker sits in a clearing beside
@@ -38635,7 +38643,8 @@
         { id: "clothes", name: "穿搭衣橱", x: 55.0, y: 71.2, size: "s" },
         { id: "animals", name: "动植物乐园", x: 77.9, y: 76.6, size: "s" },
         { id: "food", name: "美食厨房", x: 23.3, y: 86.4, size: "s" },
-        { id: "home", name: "家园小屋", x: 66.5, y: 93.4, size: "l" }
+        { id: "home", name: "家园小屋", x: 66.5, y: 93.4, size: "l" },
+        { id: "ece", name: "幼教专班", x: 88.0, y: 84.0, size: "m" }
       ];
       var zoneMode = null;      // zone id while a zone level is on screen
       var zoneFinished = false; // the zone on screen has no unseen words left
@@ -39994,7 +40003,7 @@
       /* ---------------- Map page ----------------
          Zone stickers are built once from ZONE_DEFS; opening the
          map refreshes each zone's learned count and completion
-         star from the one memory book. All 17 zones are open from
+         star from the one memory book. All 18 zones (17 + the ECE special zone) are open from
          the start — no locking. Tapping a zone deals a level of
          that zone's words through the same engine; the main
          line's saved level is untouched. */
